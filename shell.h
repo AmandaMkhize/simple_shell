@@ -49,12 +49,12 @@ void free_all(char **input, char *line);
 /****** MISCELLANEOUS AND INPUT FUNCTIONS *******/
 
 char *_getline();
-char *space(char *str);
+char *w_space(char *str);
 char *enter(char *string);
 void hashtag_handler(char *buff);
 void prompt(void);
-unsigned int check_delim(char c, const char *str);
-char *_strtok(char *str, const char *delim);
+unsigned int check_delimiter(char ch, const char *string);
+char *_strtok(char *string, const char *delimiter);
 int history(char *input);
 char **separator(char *input);
 
