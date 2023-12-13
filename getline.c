@@ -1,10 +1,9 @@
 #include "shell.h"
 
-/*
+/**
 * _getline - Reads input from the standard input by the user.
 * Return: The input stored in a buffer.
 */
-
 char *_getline()
 {
 int i, rd, buffsize = BUFSIZE;
@@ -43,7 +42,8 @@ free(buffer);
 hashtag_handler(buf);
 return (buf);
 }
-/*
+
+/**
 * enter - Handles the newline character input.
 * @string: The string to be handled.
 * Return: returns An empty string.
@@ -53,7 +53,8 @@ char *enter(char *string)
 free(string);
 return ("\0");
 }
-/*
+
+/**
 * w_space - removes whitespaces.
 * @str: The input to be modified.
 * Return: The modified string.
@@ -83,6 +84,7 @@ return ("\0");
 }
 return (buff);
 }
+
 /**
 * hashtag_handler - removes everything after '#'
 * @buff: the input buffer
@@ -99,3 +101,4 @@ buff[i] = '\0';
 }
 }
 }
+
