@@ -37,7 +37,7 @@ return (NULL);
 }
 }
 buffer[i] = '\0';
-buf = space(buffer);
+buf = w_space(buffer);
 free(buffer);
 hashtag_handler(buf);
 return (buf);

@@ -1,13 +1,12 @@
-<<<<<<< HEAD
 #include "shell.h"
 
 /**
-* main - Entry point to the program
+* alt_main - Entry point to the program
 * @argc: the argument count
 * @argv: the argument vector
 * Return: Returns the condition
 */
-int main(__attribute__((unused)) int argc, char **argv)
+int alt_main(__attribute__((unused)) int argc, char **argv)
 {
 char *user_input, **cmd, **commands;
 int count = 0, i, condition = 1, stat = 0;
@@ -49,7 +48,7 @@ wait(&stat);
 }
 return (stat);
 }
-=======
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -58,83 +57,110 @@ return (stat);
 
 #define BUF_SIZE 256
 
+/**
+* read_command - Read a command from the user
+* @buffer: The buffer to store the command
+* @prompt: The prompt to display to the user
+* Return: Returns 1 if successful, 0 otherwise
+*/
+
 int read_command(char *buffer, const char *prompt)
 {
-	printf("%s", prompt);
+printf("%s", prompt);
 
-	return (fgets(buffer, BUF_SIZE, stdin) != NULL);
+return (fgets(buffer, BUF_SIZE, stdin) != NULL);
 
 }
-int handle_eof(char *buffer)
+
+/**
+* handle_eof - Handle end-of-file condition.
+* @buffer: The buffer to check for end-of-file
+* Return: Returns 1 if end-of-file is reached, 0 otherwise
+*/
+
+int handle_eof(__attribute__((unused)) char *buffer)
 {
-	if (feof(stdin))
-	{
-		printf("\n");
-		return (1);
-	}
-	return (0);
+if (feof(stdin))
+{
+printf("\n");
+return (1);
 }
+return (0);
+}
+
+/**
+* process_command - Process a command
+* @buffer: The command to process
+* Return: Returns 0 if successful, 1 otherwise
+*/
+
 int process_command(char *buffer)
 {
-	if (strlen(buffer) == 0)
-	{
-		return (0);
-	}
-	if (strchr(buffer, ' ') != NULL)
-	{
-		printf("Error: Command should be a single word\n");
-		return (0);
+pid_t pid;
 
-}
-	pid_t pid = fork();
-
-	if (pid == -1)
-	{
-	perror("fork failed");
-
-	return (0);
-	}
-	if (pid == 0)
+if (strlen(buffer) == 0)
 {
-	if (execve(buffer, (char *const [])
-				{buffer, NULL}, environ) == -1)
-	{
-		printf("%s: No such file or directory\n", buffer);
-		exit(1);
-	}
-}	else
+return (0);
+}
+
+pid = fork();
+
+if (strchr(buffer, ' ') != NULL)
 {
-	int status;
-
-	waitpid(pid, &status, 0);
-
-	if (!WIFEXITED(status) || WEXITSTATUS(status) != 0)
-	{
-		printf("Error executing command\n");
-	}
+printf("Error: Command should be a single word\n");
+return (0);
 }
-	return (0);
 
+if (pid == -1)
+{
+perror("fork failed");
+return (0);
 }
+
+if (pid == 0)
+{
+char *args[2];
+args[0] = buffer;
+args[1] = NULL;
+
+if (execve(buffer, args, environ) == -1)
+{
+printf("%s: No such file or directory\n", buffer);
+exit(1);
+}
+}
+else
+{
+int status;
+waitpid(pid, &status, 0);
+
+if (!WIFEXITED(status) || WEXITSTATUS(status) != 0)
+{
+printf("Error executing command\n");
+}
+}
+
+return (0);
+}
+
+
 int main(void)
 {
-	char buffer[BUF_SIZE];
+char buffer[BUF_SIZE];
 
-	const char prompt[] = "#cisfun$ ";
+const char prompt[] = "#cisfun$ ";
 
-	while (1)
-	{
-		if (!read_command(buffer, prompt))
-		{
-			break;
-		}
-		if (handle_eof(buffer))
-		{
-			break;
-		}
-		process_command(buffer);
-	}
-	return (0);
+while (1)
+{
+if (!read_command(buffer, prompt))
+{
+break;
 }
-
->>>>>>> c519e0bb08a68c79ec46bc6413c13e3838b86971
+if (handle_eof(buffer))
+{
+break;
+}
+process_command(buffer);
+}
+return (0);
+}
