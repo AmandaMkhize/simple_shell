@@ -145,7 +145,6 @@ if (pid == 0)
 char *args[2];
 args[0] = buffer;
 args[1] = NULL;
-
 if (execve(buffer, args, environ) == -1)
 {
 printf("%s: No such file or directory\n", buffer);
@@ -156,7 +155,6 @@ else
 {
 int status;
 waitpid(pid, &status, 0);
-
 if (!WIFEXITED(status) || WEXITSTATUS(status) != 0)
 {
 printf("Error executing command\n");
