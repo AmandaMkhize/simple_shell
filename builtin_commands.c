@@ -1,3 +1,5 @@
+#include "shell.h"
+
 /**
  * check_builtin - Checks if parsed command in built-in
  * @cmd: Parsed command to be check
