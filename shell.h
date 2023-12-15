@@ -54,6 +54,9 @@ unsigned int check_delimiter(char ch, const char *string);
 char *_strtok(char *string, const char *delimiter);
 int history(char *input);
 char **separator(char *input);
+static int change_to_directory(const char *path)
+static void update_pwd_variables(const char *cwd)
+int change_dir(char **cmd, __attribute__((unused)) int st)
 
 /******* FILE ARGUMENT HANDLER FUNCTIONS *******/
 void read_file(char *file, char **argv);
