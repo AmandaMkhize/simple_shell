@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * help_env - this displays the information on the shell by builtin command 'env'
+ * help_env -  displays information on the shell by builtin command 'env'
  */
 void help_env(void)
 {
@@ -11,7 +11,7 @@ void help_env(void)
 }
 
 /**
- * help_setenv - this displays the information on the shell by builtin command 'setenv'
+ * help_setenv - displays information on the shell by builtin command 'setenv'
  */
 void help_setenv(void)
 {

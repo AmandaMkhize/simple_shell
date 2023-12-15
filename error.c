@@ -9,16 +9,17 @@
 
 void print_error(char *user_input, int counter, char **argv)
 {
-char *error;
+char *error = _itoa(counter);
 
 PRINT(argv[0]);
 PRINT(": ");
-error = _itoa(counter);
 PRINT(error);
-free(error);
 PRINT(": ");
 PRINT(user_input);
-PRINT(": not found\n");
+PRINT(": ");
+PRINT("not found\n");
+
+free(error);
 }
 
 /**

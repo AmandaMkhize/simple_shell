@@ -23,7 +23,7 @@ void help_all(void)
 }
 
 /**
- * help_alias - this displays the information on the shell by builtin command 'alias'
+ * help_alias - displays  information on the shell by builtin command 'alias'
  */
 void help_alias(void)
 {
